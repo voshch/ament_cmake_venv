@@ -4,6 +4,7 @@ set(venv_install_dir "${CMAKE_INSTALL_PREFIX}/venv")
 
 set(target_venv "VENV_CREATED")
 
+separate_arguments(venv_clean_pythonpath NATIVE_COMMAND "${CMAKE_COMMAND} -E env --unset=PYTHONPATH")
 set(venv_python "${venv_dir}/bin/python")
 set(venv_install_python "${venv_install_dir}/bin/python")
 

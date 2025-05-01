@@ -2,7 +2,7 @@ function(venv_ensure_pip)
     add_custom_command(
         TARGET "${target_venv}"
         POST_BUILD
-        COMMAND "${venv_python}" -m ensurepip --default-pip
+        COMMAND ${venv_clean_pythonpath} "${venv_python}" -m ensurepip --default-pip
     )
 endfunction()
 
@@ -10,7 +10,7 @@ function(venv_pip_install package)
     add_custom_command(
         TARGET "${target_venv}"
         POST_BUILD
-        COMMAND ${venv_python} -m pip install ${package}
+        COMMAND ${venv_clean_pythonpath} "${venv_python}" -m pip install ${package}
     )
 endfunction()
 
@@ -21,6 +21,6 @@ function(venv_pip_install_local package)
         TARGET "${target_venv}"
         POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory "${package}" "${build_dir}"
-        COMMAND "${venv_python}" -m pip install "${build_dir}"
+        COMMAND ${venv_clean_pythonpath} "${venv_python}" -m pip install "${build_dir}"
     )
 endfunction()
