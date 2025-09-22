@@ -8,6 +8,10 @@ function(venv_pip_install package)
     venv_python(-m pip install "${package}")
 endfunction()
 
+function(venv_pip_install_editable package)
+    venv_python(-m pip install -e "${package}")
+endfunction()
+
 function(venv_pip_install_local package)
     cmake_path(GET package FILENAME package_name)
     set(build_dir "${CMAKE_CURRENT_BINARY_DIR}/python_builds/${package_name}")
