@@ -14,7 +14,7 @@ function(venv_script script_name script_cmd)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/scripts/${script_name}"
         CONTENT
             "#!/usr/bin/env sh
-PYTHONPATH='${arg_PYTHONPATH}' ${venv_install_python} ${script_cmd} \"$@\""
+PYTHONPATH='${arg_PYTHONPATH}' exec ${venv_install_python} ${script_cmd} \"$@\""
         FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
     )
     install(
